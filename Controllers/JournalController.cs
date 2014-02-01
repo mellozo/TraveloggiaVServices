@@ -16,7 +16,7 @@ namespace AngularServices.Controllers
      * */
 
 
-    [EnableCors(origins: "http://localhost:3443", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost/TraveloggiaV", headers: "*", methods: "*")]
     public class JournalController : ApiController
     {
 
