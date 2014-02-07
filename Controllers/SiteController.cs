@@ -9,11 +9,11 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using TraveloggiaWebApi.Models;
-using System.Web.Http.Cors;
+//using System.Web.Http.Cors;
 
 namespace TraveloggiaWebApi.Controllers
 {
-        [EnableCors(origins: "http://localhost/TraveloggiaVClient", headers: "*", methods: "*")]
+       // [EnableCors(origins: "http://localhost/TraveloggiaVClient", headers: "*", methods: "*")]
     public class SiteController : ApiController
     {
         private traveloggiaDBEntities db = new traveloggiaDBEntities();
