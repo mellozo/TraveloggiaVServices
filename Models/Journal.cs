@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaWebApi.Models
+namespace disaster.Models
 {
     using System;
     using System.Collections.Generic;

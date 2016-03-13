@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="traveloggiaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="FBOneShotSites">
+    <Key>
+      <PropertyRef Name="FBOneShoSiteID" />
+    </Key>
+    <Property Name="FBOneShoSiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FBPhotoIdentifier" Type="varchar" MaxLength="200" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MemberID" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="URL" Type="varchar" MaxLength="255" />
+    <Property Name="RouteIndex" Type="int" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="FromPhone" Type="bit" />
+  </EntityType>
+  <EntityType Name="FBSharedPhotos">
+    <Key>
+      <PropertyRef Name="FBPhotoIdentifier" />
+    </Key>
+    <Property Name="FBPhotoIdentifier" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="LowResPhotoUrl" Type="varchar" MaxLength="255" />
+    <Property Name="HighResPhotoUrl" Type="varchar" MaxLength="255" />
+    <Property Name="FBPhotoId" Type="varchar" MaxLength="255" />
+    <Property Name="Caption" Type="varchar" MaxLength="2000" />
+    <Property Name="Date" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Journal">
+    <Key>
+      <PropertyRef Name="JournalID" />
+    </Key>
+    <Property Name="JournalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Text" Type="varchar(max)" />
+    <Property Name="SiteID" Type="int" />
+    <Property Name="KeyWords" Type="text" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="JournalDate" Type="date" />
+    <Property Name="FromPhone" Type="bit" />
+    <Property Name="Title" Type="varchar" MaxLength="1000" />
+    <Property Name="MemberID" Type="int" />
+  </EntityType>
+  <EntityType Name="Layers">
+    <Key>
+      <PropertyRef Name="LayerID" />
+    </Key>
+    <Property Name="LayerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MapID" Type="int" />
+    <Property Name="Url" Type="varchar" MaxLength="1000" />
+    <Property Name="Name" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Maps">
+    <Key>
+      <PropertyRef Name="MapID" />
+    </Key>
+    <Property Name="MapID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MapName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="MinX" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MaxX" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MinY" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MaxY" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="FromPhone" Type="bit" />
+    <Property Name="LastRevision" Type="datetime" />
+    <Property Name="HasLayers" Type="bit" />
+  </EntityType>
+  <EntityType Name="Members">
+    <Key>
+      <PropertyRef Name="MemberID" />
+    </Key>
+    <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="20" />
+    <Property Name="LastName" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="40" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="AccountCreateDate" Type="datetime" />
+    <Property Name="OpenID" Type="varchar" MaxLength="150" />
+    <Property Name="CreatedByMapID" Type="int" />
+    <Property Name="TraveloggiaEditionID" Type="int" />
+    <Property Name="TraveloggiaEdition" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Photos">
+    <Key>
+      <PropertyRef Name="PhotoID" />
+    </Key>
+    <Property Name="PhotoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileName" Type="varchar" MaxLength="255" />
+    <Property Name="Caption" Type="varchar(max)" />
+    <Property Name="SiteID" Type="int" />
+    <Property Name="JournalID" Type="int" />
+    <Property Name="DateAdded" Type="date" />
+    <Property Name="DateTaken" Type="datetime" />
+    <Property Name="FromPhone" Type="bit" />
+    <Property Name="StorageURL" Type="varchar" MaxLength="1000" />
+    <Property Name="ThumbnailURL" Type="varchar" MaxLength="1000" />
+  </EntityType>
+  <EntityType Name="Ratings">
+    <Key>
+      <PropertyRef Name="RatingRecordID" />
+    </Key>
+    <Property Name="RatingRecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteID" Type="int" Nullable="false" />
+    <Property Name="MapID" Type="int" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="RatingValue" Type="int" Nullable="false" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="DeviceID" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="Sites">
+    <Key>
+      <PropertyRef Name="SiteID" />
+    </Key>
+    <Property Name="SiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Longitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="Latitude" Type="decimal" Precision="18" Scale="5" />
+    <Property Name="MapID" Type="int" />
+    <Property Name="MemberID" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="100" />
+    <Property Name="Address" Type="varchar" MaxLength="255" />
+    <Property Name="Description" Type="varchar" MaxLength="2000" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="URL" Type="varchar" MaxLength="255" />
+    <Property Name="DateAdded" Type="datetime" />
+    <Property Name="FromPhone" Type="bit" />
+    <Property Name="Rating" Type="int" />
+    <Property Name="AverageRating" Type="decimal" Precision="18" Scale="1" />
+    <Property Name="VotesCast" Type="int" />
+    <Property Name="RouteIndex" Type="int" />
+  </EntityType>
+  <EntityType Name="TraveloggiaEdition">
+    <Key>
+      <PropertyRef Name="EditionID" />
+    </Key>
+    <Property Name="EditionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EditionName" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Unhandled">
+    <Key>
+      <PropertyRef Name="RecordID" />
+    </Key>
+    <Property Name="RecordID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="ExceptionName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Message" Type="nvarchar(max)" />
+    <Property Name="StackTrace" Type="ntext" />
+    <Property Name="Data" Type="nvarchar(max)" />
+    <Property Name="InnerException" Type="xml" />
+    <Property Name="PhoneID" Type="char" MaxLength="20" />
+    <Property Name="OS" Type="nvarchar" MaxLength="30" />
+    <Property Name="Model" Type="varchar" MaxLength="30" />
+    <Property Name="Manufacturer" Type="varchar" MaxLength="30" />
+    <Property Name="MemberID" Type="int" />
+  </EntityType>
+  <Association Name="FK_Journal_Sites">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+    <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="Journal">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Photos_Sites">
+    <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
+    <End Role="Photos" Type="Self.Photos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sites">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="Photos">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Sites_Maps">
+    <End Role="Maps" Type="Self.Maps" Multiplicity="0..1" />
+    <End Role="Sites" Type="Self.Sites" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Maps">
+        <PropertyRef Name="MapID" />
+      </Principal>
+      <Dependent Role="Sites">
+        <PropertyRef Name="MapID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="traveloggiaDBModelStoreContainer">
+    <EntitySet Name="FBOneShotSites" EntityType="Self.FBOneShotSites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FBSharedPhotos" EntityType="Self.FBSharedPhotos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Journal" EntityType="Self.Journal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Layers" EntityType="Self.Layers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Maps" EntityType="Self.Maps" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Members" EntityType="Self.Members" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Photos" EntityType="Self.Photos" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Ratings" EntityType="Self.Ratings" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sites" EntityType="Self.Sites" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TraveloggiaEdition" EntityType="Self.TraveloggiaEdition" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Unhandled" EntityType="Self.Unhandled" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Journal_Sites" Association="Self.FK_Journal_Sites">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="Journal" EntitySet="Journal" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Photos_Sites" Association="Self.FK_Photos_Sites">
+      <End Role="Sites" EntitySet="Sites" />
+      <End Role="Photos" EntitySet="Photos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Sites_Maps" Association="Self.FK_Sites_Maps">
+      <End Role="Maps" EntitySet="Maps" />
+      <End Role="Sites" EntitySet="Sites" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

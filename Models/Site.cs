@@ -7,19 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaWebApi.Models
+namespace disaster.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Site
     {
-        public Site()
-        {
-            this.Journals = new HashSet<Journal>();
-            this.Photos = new HashSet<Photo>();
-        }
-    
         public int SiteID { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public Nullable<decimal> Latitude { get; set; }
@@ -37,8 +31,5 @@ namespace TraveloggiaWebApi.Models
         public Nullable<decimal> AverageRating { get; set; }
         public Nullable<int> VotesCast { get; set; }
         public Nullable<int> RouteIndex { get; set; }
-    
-        public virtual ICollection<Journal> Journals { get; set; }
-        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

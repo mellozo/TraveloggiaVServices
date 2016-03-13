@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="traveloggiaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="traveloggiaDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="FBOneShotSites">
           <Key>
             <PropertyRef Name="FBOneShoSiteID" />
@@ -230,7 +230,7 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="traveloggiaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="traveloggiaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="FBOneShotSite">
           <Key>
             <PropertyRef Name="FBOneShoSiteID" />
@@ -367,8 +367,6 @@
           <Property Name="AverageRating" Type="Decimal" Precision="18" Scale="1" />
           <Property Name="VotesCast" Type="Int32" />
           <Property Name="RouteIndex" Type="Int32" />
-          <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Sites" FromRole="Sites" ToRole="Journal" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_Sites" FromRole="Sites" ToRole="Photos" />
         </EntityType>
         <EntityType Name="TraveloggiaEdition">
           <Key>

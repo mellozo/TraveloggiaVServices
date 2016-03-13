@@ -7,13 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaWebApi.Models
+namespace disaster.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Map
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Map()
         {
             this.Sites = new HashSet<Site>();
@@ -31,6 +32,7 @@ namespace TraveloggiaWebApi.Models
         public Nullable<System.DateTime> LastRevision { get; set; }
         public Nullable<bool> HasLayers { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Site> Sites { get; set; }
     }
 }

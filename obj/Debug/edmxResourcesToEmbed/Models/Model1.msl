@@ -1,0 +1,176 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="traveloggiaDBModelStoreContainer" CdmEntityContainer="traveloggiaDBEntities">
+    <EntitySetMapping Name="FBOneShotSites">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.FBOneShotSite">
+        <MappingFragment StoreEntitySet="FBOneShotSites">
+          <ScalarProperty Name="FBOneShoSiteID" ColumnName="FBOneShoSiteID" />
+          <ScalarProperty Name="FBPhotoIdentifier" ColumnName="FBPhotoIdentifier" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FBSharedPhotos">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.FBSharedPhoto">
+        <MappingFragment StoreEntitySet="FBSharedPhotos">
+          <ScalarProperty Name="FBPhotoIdentifier" ColumnName="FBPhotoIdentifier" />
+          <ScalarProperty Name="LowResPhotoUrl" ColumnName="LowResPhotoUrl" />
+          <ScalarProperty Name="HighResPhotoUrl" ColumnName="HighResPhotoUrl" />
+          <ScalarProperty Name="FBPhotoId" ColumnName="FBPhotoId" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Journals">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Journal">
+        <MappingFragment StoreEntitySet="Journal">
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="Text" ColumnName="Text" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Layers">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Layer">
+        <MappingFragment StoreEntitySet="Layers">
+          <ScalarProperty Name="LayerID" ColumnName="LayerID" />
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Maps">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
+        <MappingFragment StoreEntitySet="Maps">
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="MapName" ColumnName="MapName" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="MinX" ColumnName="MinX" />
+          <ScalarProperty Name="MaxX" ColumnName="MaxX" />
+          <ScalarProperty Name="MinY" ColumnName="MinY" />
+          <ScalarProperty Name="MaxY" ColumnName="MaxY" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+          <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
+          <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Members">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Member">
+        <MappingFragment StoreEntitySet="Members">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="AccountCreateDate" ColumnName="AccountCreateDate" />
+          <ScalarProperty Name="OpenID" ColumnName="OpenID" />
+          <ScalarProperty Name="CreatedByMapID" ColumnName="CreatedByMapID" />
+          <ScalarProperty Name="TraveloggiaEditionID" ColumnName="TraveloggiaEditionID" />
+          <ScalarProperty Name="TraveloggiaEdition" ColumnName="TraveloggiaEdition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Photos">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Photo">
+        <MappingFragment StoreEntitySet="Photos">
+          <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+          <ScalarProperty Name="FileName" ColumnName="FileName" />
+          <ScalarProperty Name="Caption" ColumnName="Caption" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
+          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+          <ScalarProperty Name="StorageURL" ColumnName="StorageURL" />
+          <ScalarProperty Name="ThumbnailURL" ColumnName="ThumbnailURL" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ratings">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Rating">
+        <MappingFragment StoreEntitySet="Ratings">
+          <ScalarProperty Name="RatingRecordID" ColumnName="RatingRecordID" />
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sites">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Site">
+        <MappingFragment StoreEntitySet="Sites">
+          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="MapID" ColumnName="MapID" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="URL" ColumnName="URL" />
+          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+          <ScalarProperty Name="Rating" ColumnName="Rating" />
+          <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+          <ScalarProperty Name="VotesCast" ColumnName="VotesCast" />
+          <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TraveloggiaEditions">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.TraveloggiaEdition">
+        <MappingFragment StoreEntitySet="TraveloggiaEdition">
+          <ScalarProperty Name="EditionID" ColumnName="EditionID" />
+          <ScalarProperty Name="EditionName" ColumnName="EditionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unhandleds">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Unhandled">
+        <MappingFragment StoreEntitySet="Unhandled">
+          <ScalarProperty Name="RecordID" ColumnName="RecordID" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ExceptionName" ColumnName="ExceptionName" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="StackTrace" ColumnName="StackTrace" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="InnerException" ColumnName="InnerException" />
+          <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+          <ScalarProperty Name="OS" ColumnName="OS" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
