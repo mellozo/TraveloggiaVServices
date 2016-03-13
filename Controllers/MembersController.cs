@@ -21,7 +21,7 @@ namespace disaster.Controllers
         [ResponseType(typeof(Member))]
         [AcceptVerbs("POST")]
         [HttpPost]
-      //  [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
         public IHttpActionResult ValidateMember(Member param)
         {
           Member member=null;
@@ -45,7 +45,7 @@ namespace disaster.Controllers
 
         // POST: api/Members
         [ResponseType(typeof(Member))]
-       // [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
         public IHttpActionResult PostMember(Member member)
         {
 

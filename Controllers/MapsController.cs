@@ -24,6 +24,8 @@ namespace disaster.Controllers
         public IQueryable<Map> GetDefaultMaps()
         {
             var maps = db.Maps.Where(m => m.MemberID == 1 || m.MemberID == 77).OrderByDescending(m => m.CreateDate);
+            // .Include(a => a.Children.Select( c=> c.ChildRelationshipType));
+            //http://stackoverflow.com/questions/5905716/how-do-i-eagerly-include-the-child-and-grandchild-elements-of-an-entity-in-entit
             return maps.AsQueryable();
         }
 
@@ -36,7 +38,7 @@ namespace disaster.Controllers
         //http://localhost:53382/
         // GET: api/Maps/5
         [ResponseType(typeof(IEnumerable<Map>))]
-        [EnableCors(origins: "http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
         public IQueryable<Map> GetMaps(int id)
         {
             var maps = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate);

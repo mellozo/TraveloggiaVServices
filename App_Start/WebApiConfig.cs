@@ -12,7 +12,7 @@ namespace disaster
         {
             // Web API configuration and services
             // var devURL = "http://localhost:53382"
-            var cors = new EnableCorsAttribute("http://localhost:53382", "*", "*");
+            var cors = new EnableCorsAttribute("http://html5.traveloggia.net", "*", "*");
             config.EnableCors(cors);
 
             // Web API routes

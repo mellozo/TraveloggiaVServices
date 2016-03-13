@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using disaster.Models;
+using System.Web.Http.Cors;
+
 
 namespace disaster.Controllers
 {
@@ -23,7 +25,9 @@ namespace disaster.Controllers
         //}
 
         // GET: api/Photos/5
-      //  [ResponseType(typeof(Photo))]
+        //  [ResponseType(typeof(Photo))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net", headers: "*", methods: "*")]
+ 
         public IQueryable<Photo> GetPhoto(int id)
         {
             IQueryable<Photo> photos = db.Photos.Where(pic => pic.SiteID == id).AsQueryable();

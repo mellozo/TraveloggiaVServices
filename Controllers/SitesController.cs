@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using disaster.Models;
+using System.Web.Http.Cors;
 
 namespace disaster.Controllers
 {
@@ -24,6 +25,7 @@ namespace disaster.Controllers
 
         // POST: api/Sites
         [ResponseType(typeof(Site))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
         public IHttpActionResult PostSite(Site site)
         {
             //if (!ModelState.IsValid)
