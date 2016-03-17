@@ -46,11 +46,20 @@ namespace disaster.Controllers
             if (maps.Count() ==0)
             {
                 Map defaultMap = new Map();
+                defaultMap.MapName = "DefaultMap_" + DateTime.Now.ToShortDateString().Replace("/", "_");
                 defaultMap.MemberID = id;
-                defaultMap.CreateDate = new DateTime();
+                defaultMap.CreateDate = DateTime.Now;
                 db.Maps.Add(defaultMap);
-                db.SaveChanges();
-                return db.Maps.AsQueryable();
+                try
+                {
+                    db.SaveChanges();
+                    maps = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate);
+                }
+                catch(Exception ex)
+                {
+                    
+                }
+              
             }
 
             return maps;

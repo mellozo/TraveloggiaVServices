@@ -26,7 +26,7 @@ namespace disaster.Controllers
 
         // GET: api/Photos/5
         //  [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net", headers: "*", methods: "*")]
+    //    [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net", headers: "*", methods: "*")]
  
         public IQueryable<Photo> GetPhoto(int id)
         {
@@ -35,7 +35,6 @@ namespace disaster.Controllers
             //{
             //    return NotFound();
             //}
-
             return photos.AsQueryable();
         }
 
@@ -74,15 +73,18 @@ namespace disaster.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+
+
+
         // POST: api/Photos
         [ResponseType(typeof(Photo))]
         public IHttpActionResult PostPhoto(Photo photo)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            photo.DateAdded = DateTime.Now;
             db.Photos.Add(photo);
             db.SaveChanges();
 
