@@ -22,6 +22,7 @@ namespace disaster.Controllers
         [AcceptVerbs("POST")]
         [HttpPost]
         [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com", headers: "*", methods: "*")]
+     //   [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult ValidateMember(Member param)
         {
           Member member=null;
@@ -153,13 +154,7 @@ namespace disaster.Controllers
             return Ok(member);
         }
 
-        //// GET: api/Members
-        //public IQueryable<Member> GetMembers()
-        //{
-        //    return db.Members;
-        //}
-        //;http://traveloggiaauthservice.net.rosebloom.arvixe.com
-
+    
         protected override void Dispose(bool disposing)
         {
             if (disposing)

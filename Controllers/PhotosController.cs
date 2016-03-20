@@ -18,16 +18,9 @@ namespace disaster.Controllers
     {
         private traveloggiaDBEntities db = new traveloggiaDBEntities();
 
-        //// GET: api/Photos
-        //public IQueryable<Photo> GetPhotos()
-        //{
-        //    return db.Photos;
-        //}
-
         // GET: api/Photos/5
-        //  [ResponseType(typeof(Photo))]
-    //    [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net", headers: "*", methods: "*")]
- 
+        [ResponseType(typeof(Photo))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IQueryable<Photo> GetPhoto(int id)
         {
             IQueryable<Photo> photos = db.Photos.Where(pic => pic.SiteID == id).AsQueryable();
@@ -38,8 +31,25 @@ namespace disaster.Controllers
             return photos.AsQueryable();
         }
 
+        // POST: api/Photos
+        [ResponseType(typeof(Photo))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        public IHttpActionResult PostPhoto(Photo photo)
+        {
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            photo.DateAdded = DateTime.Now;
+            db.Photos.Add(photo);
+            db.SaveChanges();
+            return CreatedAtRoute("DefaultApi", new { id = photo.PhotoID }, photo);
+        }
+
+
         // PUT: api/Photos/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PutPhoto(int id, Photo photo)
         {
             if (!ModelState.IsValid)
@@ -76,23 +86,10 @@ namespace disaster.Controllers
 
 
 
-        // POST: api/Photos
-        [ResponseType(typeof(Photo))]
-        public IHttpActionResult PostPhoto(Photo photo)
-        {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
-            photo.DateAdded = DateTime.Now;
-            db.Photos.Add(photo);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = photo.PhotoID }, photo);
-        }
 
         // DELETE: api/Photos/5
         [ResponseType(typeof(Photo))]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeletePhoto(int id)
         {
             Photo photo = db.Photos.Find(id);
