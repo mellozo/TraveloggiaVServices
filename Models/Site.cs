@@ -31,5 +31,7 @@ namespace disaster.Models
         public Nullable<decimal> AverageRating { get; set; }
         public Nullable<int> VotesCast { get; set; }
         public Nullable<int> RouteIndex { get; set; }
+        public Nullable<System.DateTime> Arrival { get; set; }
+        public Nullable<System.DateTime> Departure { get; set; }
     }
 }

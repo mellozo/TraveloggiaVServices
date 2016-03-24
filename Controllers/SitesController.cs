@@ -19,7 +19,7 @@ namespace disaster.Controllers
 
         // POST: api/Sites
         [ResponseType(typeof(Site))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com,  http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostSite(Site site)
         {
             //if (!ModelState.IsValid)

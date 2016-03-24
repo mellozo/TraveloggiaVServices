@@ -21,6 +21,7 @@ namespace disaster.Controllers
         [ResponseType(typeof(IEnumerable<Map>))]
         [AcceptVerbs("GET")]
         [HttpGet]
+        [EnableCors(origins: "http://html5.traveloggia.net", headers: "*", methods: "*")]
         public IQueryable<Map> GetDefaultMaps()
         {
             var maps = db.Maps.Where(m => m.MemberID == 1 || m.MemberID == 77).OrderByDescending(m => m.CreateDate);
