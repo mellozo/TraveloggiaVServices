@@ -31,7 +31,7 @@ namespace disaster.Controllers
 
         // GET: api/Maps/5
         [ResponseType(typeof(IEnumerable<Map>))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://localhost:53382", headers: "*", methods: "*")]
         public IQueryable<Map> GetMaps(int id)
         {
             var maps = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate);

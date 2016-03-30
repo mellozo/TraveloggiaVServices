@@ -20,7 +20,7 @@ namespace disaster.Controllers
 
         // GET: api/Journals/5
         [ResponseType(typeof(Journal))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IQueryable<Journal> GetJournal(int id)
         {
             return db.Journals.Where(j => j.SiteID == id).AsQueryable();
@@ -30,7 +30,7 @@ namespace disaster.Controllers
 
         // POST: api/Journals
         [ResponseType(typeof(Journal))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostJournal(Journal journal)
         {
             //if (!ModelState.IsValid)
@@ -50,7 +50,7 @@ namespace disaster.Controllers
 
         // PUT: api/Journals/5
         [ResponseType(typeof(void))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PutJournal(int id, Journal journal)
         {
             //if (!ModelState.IsValid)
@@ -87,7 +87,7 @@ namespace disaster.Controllers
 
         // DELETE: api/Journals/5
         [ResponseType(typeof(Journal))]
-        [EnableCors(origins: "http://traveloggiaauthservice.net.rosebloom.arvixe.com, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeleteJournal(int id)
         {
             Journal journal = db.Journals.Find(id);

@@ -27,14 +27,14 @@ namespace disaster.Models
     
         public virtual DbSet<FBOneShotSite> FBOneShotSites { get; set; }
         public virtual DbSet<FBSharedPhoto> FBSharedPhotos { get; set; }
-        public virtual DbSet<Journal> Journals { get; set; }
         public virtual DbSet<Layer> Layers { get; set; }
         public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
         public virtual DbSet<TraveloggiaEdition> TraveloggiaEditions { get; set; }
         public virtual DbSet<Unhandled> Unhandleds { get; set; }
+        public virtual DbSet<Journal> Journals { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
     }
 }
