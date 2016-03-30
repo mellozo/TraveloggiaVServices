@@ -143,6 +143,8 @@
           <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
           <ScalarProperty Name="VotesCast" ColumnName="VotesCast" />
           <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
+          <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+          <ScalarProperty Name="Departure" ColumnName="Departure" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

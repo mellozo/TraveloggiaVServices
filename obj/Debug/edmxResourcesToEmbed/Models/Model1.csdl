@@ -136,6 +136,8 @@
     <Property Name="AverageRating" Type="Decimal" Precision="18" Scale="1" />
     <Property Name="VotesCast" Type="Int32" />
     <Property Name="RouteIndex" Type="Int32" />
+    <Property Name="Arrival" Type="DateTime" Precision="3" />
+    <Property Name="Departure" Type="DateTime" Precision="3" />
   </EntityType>
   <EntityType Name="TraveloggiaEdition">
     <Key>

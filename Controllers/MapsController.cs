@@ -8,10 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using disaster.Models;
+using TraveloggiaREST.Models;
 using System.Web.Http.Cors;
 
-namespace disaster.Controllers
+namespace TraveloggiaREST.Controllers
 {
     public class MapsController : ApiController
     {
@@ -31,7 +31,7 @@ namespace disaster.Controllers
 
         // GET: api/Maps/5
         [ResponseType(typeof(IEnumerable<Map>))]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IQueryable<Map> GetMaps(int id)
         {
             var maps = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate);

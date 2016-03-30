@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("disaster")]
+[assembly: AssemblyTitle("TraveloggiaREST")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("disaster")]
+[assembly: AssemblyProduct("TraveloggiaREST")]
 [assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("013cda47-e240-4b87-be20-840b8ec4056b")]
+[assembly: Guid("57a27b4e-e1a3-4b9d-93f6-38b55163dfc7")]
 
 // Version information for an assembly consists of the following four values:
 //

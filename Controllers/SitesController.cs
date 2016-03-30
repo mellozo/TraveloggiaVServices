@@ -8,10 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using disaster.Models;
+using TraveloggiaREST.Models;
 using System.Web.Http.Cors;
 
-namespace disaster.Controllers
+namespace TraveloggiaREST.Controllers
 {
     public class SitesController : ApiController
     {
@@ -19,7 +19,7 @@ namespace disaster.Controllers
 
         // POST: api/Sites
         [ResponseType(typeof(Site))]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/,  http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro,  http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostSite(Site site)
         {
             //if (!ModelState.IsValid)
@@ -38,7 +38,7 @@ namespace disaster.Controllers
         [ResponseType(typeof(IEnumerable<Site>))]
         [AcceptVerbs("GET")]
         [HttpGet]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IEnumerable<Site> GetSitesByMapId(int id)
         {
             return db.Sites.Where(s => s.MapID == id).AsEnumerable();//.Include(s=>s.Photos);
@@ -47,7 +47,7 @@ namespace disaster.Controllers
 
         // PUT: api/Sites/5
         [ResponseType(typeof(void))]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PutSite(int id, Site site)
         {
             if (!ModelState.IsValid)
@@ -85,7 +85,7 @@ namespace disaster.Controllers
 
         // DELETE: api/Sites/5
         [ResponseType(typeof(Site))]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeleteSite(int id)
         {
             Site site = db.Sites.Find(id);

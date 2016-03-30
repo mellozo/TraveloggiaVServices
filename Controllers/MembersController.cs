@@ -8,10 +8,10 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using disaster.Models;
+using TraveloggiaREST.Models;
 using System.Web.Http.Cors;
 
-namespace disaster.Controllers
+namespace TraveloggiaREST.Controllers
 {
     public class MembersController : ApiController
     {
@@ -21,7 +21,7 @@ namespace disaster.Controllers
         [ResponseType(typeof(Member))]
         [AcceptVerbs("POST")]
         [HttpPost]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult ValidateMember(Member param)
         {
           Member member=null;
@@ -45,7 +45,7 @@ namespace disaster.Controllers
 
         // POST: api/Members
         [ResponseType(typeof(Member))]
-        [EnableCors(origins: "http://traveloggia.pro.rosebloom.arvixe.com/, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostMember(Member member)
         {
 

@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace disaster.Models
+namespace TraveloggiaREST.Models
 {
     using System;
     using System.Collections.Generic;
