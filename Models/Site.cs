@@ -7,13 +7,20 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaREST.Models
+namespace REST_API.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Site
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Site()
+        {
+            this.Journals = new HashSet<Journal>();
+            this.Photos = new HashSet<Photo>();
+        }
+    
         public int SiteID { get; set; }
         public Nullable<decimal> Longitude { get; set; }
         public Nullable<decimal> Latitude { get; set; }
@@ -33,5 +40,10 @@ namespace TraveloggiaREST.Models
         public Nullable<int> RouteIndex { get; set; }
         public Nullable<System.DateTime> Arrival { get; set; }
         public Nullable<System.DateTime> Departure { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Journal> Journals { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Photo> Photos { get; set; }
     }
 }

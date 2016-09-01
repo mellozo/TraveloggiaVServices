@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaREST.Models
+namespace REST_API.Models
 {
     using System;
     using System.Collections.Generic;
@@ -24,5 +24,15 @@ namespace TraveloggiaREST.Models
         public Nullable<bool> FromPhone { get; set; }
         public string StorageURL { get; set; }
         public string ThumbnailURL { get; set; }
+        public string orientation { get; set; }
+        public Nullable<int> orientationID { get; set; }
+        public Nullable<decimal> GPSLatitude { get; set; }
+        public Nullable<decimal> GPSLongitude { get; set; }
+        public string Camera { get; set; }
+        public string Model { get; set; }
+        public string Software { get; set; }
+        public Nullable<int> Height { get; set; }
+        public Nullable<int> Width { get; set; }
+        public Nullable<int> BitsPerSample { get; set; }
     }
 }

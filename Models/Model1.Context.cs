@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaREST.Models
+namespace REST_API.Models
 {
     using System;
     using System.Data.Entity;
@@ -25,16 +25,13 @@ namespace TraveloggiaREST.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<FBOneShotSite> FBOneShotSites { get; set; }
-        public virtual DbSet<FBSharedPhoto> FBSharedPhotos { get; set; }
         public virtual DbSet<Journal> Journals { get; set; }
-        public virtual DbSet<Layer> Layers { get; set; }
         public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<Member> Members { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
-        public virtual DbSet<Rating> Ratings { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
         public virtual DbSet<TraveloggiaEdition> TraveloggiaEditions { get; set; }
         public virtual DbSet<Unhandled> Unhandleds { get; set; }
+        public virtual DbSet<Device> Devices { get; set; }
     }
 }

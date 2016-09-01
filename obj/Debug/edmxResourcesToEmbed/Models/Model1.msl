@@ -1,39 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="traveloggiaDBModelStoreContainer" CdmEntityContainer="traveloggiaDBEntities">
-    <EntitySetMapping Name="FBOneShotSites">
-      <EntityTypeMapping TypeName="traveloggiaDBModel.FBOneShotSite">
-        <MappingFragment StoreEntitySet="FBOneShotSites">
-          <ScalarProperty Name="FBOneShoSiteID" ColumnName="FBOneShoSiteID" />
-          <ScalarProperty Name="FBPhotoIdentifier" ColumnName="FBPhotoIdentifier" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="Description" ColumnName="Description" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Email" ColumnName="Email" />
-          <ScalarProperty Name="Rating" ColumnName="Rating" />
-          <ScalarProperty Name="URL" ColumnName="URL" />
-          <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
-          <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-          <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="FBSharedPhotos">
-      <EntityTypeMapping TypeName="traveloggiaDBModel.FBSharedPhoto">
-        <MappingFragment StoreEntitySet="FBSharedPhotos">
-          <ScalarProperty Name="FBPhotoIdentifier" ColumnName="FBPhotoIdentifier" />
-          <ScalarProperty Name="LowResPhotoUrl" ColumnName="LowResPhotoUrl" />
-          <ScalarProperty Name="HighResPhotoUrl" ColumnName="HighResPhotoUrl" />
-          <ScalarProperty Name="FBPhotoId" ColumnName="FBPhotoId" />
-          <ScalarProperty Name="Caption" ColumnName="Caption" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="Journals">
       <EntityTypeMapping TypeName="traveloggiaDBModel.Journal">
         <MappingFragment StoreEntitySet="Journal">
@@ -46,16 +13,6 @@
           <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
           <ScalarProperty Name="Title" ColumnName="Title" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Layers">
-      <EntityTypeMapping TypeName="traveloggiaDBModel.Layer">
-        <MappingFragment StoreEntitySet="Layers">
-          <ScalarProperty Name="LayerID" ColumnName="LayerID" />
-          <ScalarProperty Name="MapID" ColumnName="MapID" />
-          <ScalarProperty Name="Url" ColumnName="Url" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -105,21 +62,16 @@
           <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
           <ScalarProperty Name="StorageURL" ColumnName="StorageURL" />
           <ScalarProperty Name="ThumbnailURL" ColumnName="ThumbnailURL" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="Ratings">
-      <EntityTypeMapping TypeName="traveloggiaDBModel.Rating">
-        <MappingFragment StoreEntitySet="Ratings">
-          <ScalarProperty Name="RatingRecordID" ColumnName="RatingRecordID" />
-          <ScalarProperty Name="SiteID" ColumnName="SiteID" />
-          <ScalarProperty Name="MapID" ColumnName="MapID" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="Date" ColumnName="Date" />
-          <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
-          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-          <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-          <ScalarProperty Name="DeviceID" ColumnName="DeviceID" />
+          <ScalarProperty Name="orientation" ColumnName="orientation" />
+          <ScalarProperty Name="orientationID" ColumnName="orientationID" />
+          <ScalarProperty Name="GPSLatitude" ColumnName="GPSLatitude" />
+          <ScalarProperty Name="GPSLongitude" ColumnName="GPSLongitude" />
+          <ScalarProperty Name="Camera" ColumnName="Camera" />
+          <ScalarProperty Name="Model" ColumnName="Model" />
+          <ScalarProperty Name="Software" ColumnName="Software" />
+          <ScalarProperty Name="Height" ColumnName="Height" />
+          <ScalarProperty Name="Width" ColumnName="Width" />
+          <ScalarProperty Name="BitsPerSample" ColumnName="BitsPerSample" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -171,6 +123,31 @@
           <ScalarProperty Name="Model" ColumnName="Model" />
           <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Devices">
+      <EntityTypeMapping TypeName="traveloggiaDBModel.Device">
+        <MappingFragment StoreEntitySet="Devices">
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="DateRecorded" ColumnName="DateRecorded" />
+          <ScalarProperty Name="handlesOrientationChange" ColumnName="handlesOrientationChange" />
+          <ScalarProperty Name="Issue" ColumnName="Issue" />
+          <ScalarProperty Name="deviceVendor" ColumnName="deviceVendor" />
+          <ScalarProperty Name="deviceType" ColumnName="deviceType" />
+          <ScalarProperty Name="deviceModel" ColumnName="deviceModel" />
+          <ScalarProperty Name="engineVersion" ColumnName="engineVersion" />
+          <ScalarProperty Name="engineName" ColumnName="engineName" />
+          <ScalarProperty Name="browserVersion" ColumnName="browserVersion" />
+          <ScalarProperty Name="browserName" ColumnName="browserName" />
+          <ScalarProperty Name="osVersion" ColumnName="osVersion" />
+          <ScalarProperty Name="osName" ColumnName="osName" />
+          <ScalarProperty Name="documentElementClientWidth" ColumnName="documentElementClientWidth" />
+          <ScalarProperty Name="documentElementClientHeight" ColumnName="documentElementClientHeight" />
+          <ScalarProperty Name="windowInnerWidth" ColumnName="windowInnerWidth" />
+          <ScalarProperty Name="windowInnerHeight" ColumnName="windowInnerHeight" />
+          <ScalarProperty Name="referrer" ColumnName="referrer" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -4,18 +4,14 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-namespace TraveloggiaREST
+namespace REST_API
 {
     public static class WebApiConfig
     {
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
- 
-            var cors = new EnableCorsAttribute("http://html5.traveloggia.net", "*", "*");
-
-         //   var cors = new EnableCorsAttribute("http://localhost:53382", "*", "*");
-            config.EnableCors(cors);
+            EnableCrossSiteRequests(config);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -25,6 +21,15 @@ namespace TraveloggiaREST
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+        }
+
+        private static void EnableCrossSiteRequests(HttpConfiguration config)
+        {
+            var cors = new EnableCorsAttribute(
+                origins: "http://www.traveloggia.pro ,  http://localhost:53382 , http://html5.traveloggia.net ",
+                headers: "*",
+                methods: "*");
+            config.EnableCors(cors);
         }
     }
 }

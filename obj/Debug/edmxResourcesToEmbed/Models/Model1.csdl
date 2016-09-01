@@ -1,36 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="traveloggiaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityType Name="FBOneShotSite">
-    <Key>
-      <PropertyRef Name="FBOneShoSiteID" />
-    </Key>
-    <Property Name="FBOneShoSiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FBPhotoIdentifier" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="Longitude" Type="Decimal" Precision="18" Scale="5" />
-    <Property Name="Latitude" Type="Decimal" Precision="18" Scale="5" />
-    <Property Name="MemberID" Type="Int32" />
-    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="Rating" Type="Int32" />
-    <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="RouteIndex" Type="Int32" />
-    <Property Name="DateAdded" Type="DateTime" Precision="3" />
-    <Property Name="FromPhone" Type="Boolean" />
-  </EntityType>
-  <EntityType Name="FBSharedPhoto">
-    <Key>
-      <PropertyRef Name="FBPhotoIdentifier" />
-    </Key>
-    <Property Name="FBPhotoIdentifier" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="LowResPhotoUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="HighResPhotoUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="FBPhotoId" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-    <Property Name="Caption" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-    <Property Name="Date" Type="DateTime" Precision="3" />
-  </EntityType>
   <EntityType Name="Journal">
     <Key>
       <PropertyRef Name="JournalID" />
@@ -44,15 +13,6 @@
     <Property Name="FromPhone" Type="Boolean" />
     <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <Property Name="MemberID" Type="Int32" />
-  </EntityType>
-  <EntityType Name="Layer">
-    <Key>
-      <PropertyRef Name="LayerID" />
-    </Key>
-    <Property Name="LayerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="MapID" Type="Int32" />
-    <Property Name="Url" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Map">
     <Key>
@@ -100,20 +60,16 @@
     <Property Name="FromPhone" Type="Boolean" />
     <Property Name="StorageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
     <Property Name="ThumbnailURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-  </EntityType>
-  <EntityType Name="Rating">
-    <Key>
-      <PropertyRef Name="RatingRecordID" />
-    </Key>
-    <Property Name="RatingRecordID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="SiteID" Type="Int32" Nullable="false" />
-    <Property Name="MapID" Type="Int32" />
-    <Property Name="UserID" Type="Int32" />
-    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="RatingValue" Type="Int32" Nullable="false" />
-    <Property Name="Latitude" Type="Decimal" Precision="18" Scale="5" />
-    <Property Name="Longitude" Type="Decimal" Precision="18" Scale="5" />
-    <Property Name="DeviceID" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="orientation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="orientationID" Type="Int32" />
+    <Property Name="GPSLatitude" Type="Decimal" Precision="18" Scale="8" />
+    <Property Name="GPSLongitude" Type="Decimal" Precision="18" Scale="8" />
+    <Property Name="Camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Software" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Height" Type="Int32" />
+    <Property Name="Width" Type="Int32" />
+    <Property Name="BitsPerSample" Type="Int32" />
   </EntityType>
   <EntityType Name="Site">
     <Key>
@@ -138,6 +94,8 @@
     <Property Name="RouteIndex" Type="Int32" />
     <Property Name="Arrival" Type="DateTime" Precision="3" />
     <Property Name="Departure" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Sites" FromRole="Sites" ToRole="Journal" />
+    <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_Sites" FromRole="Sites" ToRole="Photos" />
   </EntityType>
   <EntityType Name="TraveloggiaEdition">
     <Key>
@@ -200,14 +158,10 @@
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="traveloggiaDBEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="FBOneShotSites" EntityType="Self.FBOneShotSite" />
-    <EntitySet Name="FBSharedPhotos" EntityType="Self.FBSharedPhoto" />
     <EntitySet Name="Journals" EntityType="Self.Journal" />
-    <EntitySet Name="Layers" EntityType="Self.Layer" />
     <EntitySet Name="Maps" EntityType="Self.Map" />
     <EntitySet Name="Members" EntityType="Self.Member" />
     <EntitySet Name="Photos" EntityType="Self.Photo" />
-    <EntitySet Name="Ratings" EntityType="Self.Rating" />
     <EntitySet Name="Sites" EntityType="Self.Site" />
     <EntitySet Name="TraveloggiaEditions" EntityType="Self.TraveloggiaEdition" />
     <EntitySet Name="Unhandleds" EntityType="Self.Unhandled" />
@@ -223,5 +177,30 @@
       <End Role="Sites" EntitySet="Sites" />
       <End Role="Photos" EntitySet="Photos" />
     </AssociationSet>
+    <EntitySet Name="Devices" EntityType="traveloggiaDBModel.Device" />
   </EntityContainer>
+  <EntityType Name="Device">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="referrer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="windowInnerHeight" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="windowInnerWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="documentElementClientHeight" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="documentElementClientWidth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="osName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="osVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="browserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="browserVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="engineName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="engineVersion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deviceModel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deviceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="deviceVendor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Issue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="handlesOrientationChange" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateRecorded" Type="DateTime" Precision="3" />
+    <Property Name="MemberID" Type="Int32" />
+  </EntityType>
 </Schema>

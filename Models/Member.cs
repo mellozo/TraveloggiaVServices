@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace TraveloggiaREST.Models
+namespace REST_API.Models
 {
     using System;
     using System.Collections.Generic;

@@ -8,23 +8,24 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using TraveloggiaREST.Models;
+using REST_API.Models;
 using System.Web.Http.Cors;
 
-namespace TraveloggiaREST.Controllers
+namespace REST_API.Controllers
 {
     public class MembersController : ApiController
     {
         private traveloggiaDBEntities db = new traveloggiaDBEntities();
 
+
         [Route("api/Members/Validate")]
         [ResponseType(typeof(Member))]
         [AcceptVerbs("POST")]
         [HttpPost]
-        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult ValidateMember(Member param)
         {
-          Member member=null;
+            Member member = null;
             try
             {
                 var mel = db.Members.Where(membr => membr.Email == param.Email).FirstOrDefault();
@@ -34,7 +35,7 @@ namespace TraveloggiaREST.Controllers
             {
                 var x = e;
             }
-        
+
             if (member == null)
             {
                 return NotFound();
@@ -43,28 +44,23 @@ namespace TraveloggiaREST.Controllers
             return Ok(member);
         }
 
+
         // POST: api/Members
         [ResponseType(typeof(Member))]
-        [EnableCors(origins: "http://www.traveloggia.pro, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostMember(Member member)
         {
-
             member.AccountCreateDate = DateTime.Now;
-
             //if (!ModelState.IsValid)
             //{
             //    var errors = ModelState.Values.SelectMany(v => v.Errors);
             //    return BadRequest(ModelState);
-
             //}
-
             Member memberAlready = db.Members.Where(membr => membr.Email == member.Email).FirstOrDefault();
-
             if (memberAlready != null)
             {
                 return BadRequest("member exists already");
             }
-
             db.Members.Add(member);
             db.SaveChanges();
 
@@ -72,7 +68,6 @@ namespace TraveloggiaREST.Controllers
             defaultMap.MemberID = member.MemberID;
             defaultMap.CreateDate = DateTime.Now;
             defaultMap.MapName = "DefaultMap " + DateTime.Now.ToShortDateString();
-          //  defaultMap.Sites = null;
             try
             {
                 db.Maps.Add(defaultMap);
@@ -80,25 +75,18 @@ namespace TraveloggiaREST.Controllers
             }
             catch (Exception e)
             {
-
             }
-          
-
             return CreatedAtRoute("DefaultApi", new { id = member.MemberID }, member);
         }
 
-        // GET: api/Members/5
-        [ResponseType(typeof(Member))]
-        public IHttpActionResult GetMember(int id)
-        {
-            Member member = db.Members.Find(id);
-            if (member == null)
-            {
-                return NotFound();
-            }
 
-            return Ok(member);
-        }
+
+
+
+
+
+
+
 
         // PUT: api/Members/5
         [ResponseType(typeof(void))]
@@ -135,7 +123,6 @@ namespace TraveloggiaREST.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-      
 
         // DELETE: api/Members/5
         [ResponseType(typeof(Member))]
@@ -153,7 +140,6 @@ namespace TraveloggiaREST.Controllers
             return Ok(member);
         }
 
-    
         protected override void Dispose(bool disposing)
         {
             if (disposing)
