@@ -60,13 +60,13 @@ namespace REST_API.Controllers
 
         // GET: api/MapList/5
         [Route("api/MapList/{id:int}")]
-        [ResponseType(typeof(IEnumerable<Map>))]
+        [ResponseType(typeof(IEnumerable<MapListItem>))]
         [AcceptVerbs("GET")]
         [HttpGet]
         [EnableCors(origins: "http://www.traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
-        public List<Map> GetMapList(int id)
+        public List<MapListItem> GetMapList(int id)
         {
-            var maps = db.Maps.Where(m => m.MemberID == id).Select(m=> new Map { MapID = m.MapID,MapName=m.MapName,CreateDate = m.CreateDate}).OrderByDescending(m => m.CreateDate);
+            var maps = db.Maps.Where(m => m.MemberID == id).Select(m=> new MapListItem { MapID = m.MapID, MapName = m.MapName, MemberID = m.MemberID, CreateDate = m.CreateDate }).OrderByDescending(m => m.CreateDate);
             return maps.ToList();
         }
 
