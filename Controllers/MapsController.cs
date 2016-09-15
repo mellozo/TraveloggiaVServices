@@ -64,10 +64,10 @@ namespace REST_API.Controllers
         [AcceptVerbs("GET")]
         [HttpGet]
         [EnableCors(origins: "http://www.traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
-        public IQueryable<Map> GetMapList(int id)
+        public List<Map> GetMapList(int id)
         {
-            var maps = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate);
-            return maps.AsQueryable();
+            var maps = db.Maps.Where(m => m.MemberID == id).Select(m=> new Map { MapID = m.MapID,MapName=m.MapName,CreateDate = m.CreateDate}).OrderByDescending(m => m.CreateDate);
+            return maps.ToList();
         }
 
         // GET: api/SelectMap/5
