@@ -22,7 +22,7 @@ namespace REST_API.Controllers
         [ResponseType(typeof(Member))]
         [AcceptVerbs("POST")]
         [HttpPost]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult ValidateMember(Member param)
         {
             Member member = null;
@@ -47,7 +47,7 @@ namespace REST_API.Controllers
 
         // POST: api/Members
         [ResponseType(typeof(Member))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostMember(Member member)
         {
             member.AccountCreateDate = DateTime.Now;

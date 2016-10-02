@@ -20,7 +20,7 @@ namespace REST_API.Controllers
 
         // GET: api/Maps/5
         [ResponseType(typeof(Map))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult GetMaps(int id)
         {
             Map map = null;
@@ -37,7 +37,7 @@ namespace REST_API.Controllers
             if (map == null)
             {
                 Map defaultMap = new Map();
-                defaultMap.MapName = "DefaultMap_" + DateTime.Now.ToShortDateString().Replace("/", "_");
+                defaultMap.MapName = DateTime.Now.ToShortDateString().Replace(" ", "_");
                 defaultMap.MemberID = id;
                 defaultMap.CreateDate = DateTime.Now;
                 db.Maps.Add(defaultMap);
@@ -63,7 +63,7 @@ namespace REST_API.Controllers
         [ResponseType(typeof(IEnumerable<MapListItem>))]
         [AcceptVerbs("GET")]
         [HttpGet]
-        [EnableCors(origins: "http://www.traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
         public List<MapListItem> GetMapList(int id)
         {
             var maps = db.Maps.Where(m => m.MemberID == id).Select(m=> new MapListItem { MapID = m.MapID, MapName = m.MapName, MemberID = m.MemberID, CreateDate = m.CreateDate }).OrderByDescending(m => m.CreateDate);
@@ -75,7 +75,7 @@ namespace REST_API.Controllers
         [ResponseType(typeof(Map))]
         [AcceptVerbs("GET")]
         [HttpGet]
-        [EnableCors(origins: "http://www.traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: " *", methods: "*")]
         public IHttpActionResult SelectMap(int id)
         {
             var map = db.Maps.Where(m => m.MapID == id).Include("Sites").FirstOrDefault(); 
@@ -102,7 +102,7 @@ namespace REST_API.Controllers
 
         // PUT: api/Maps/5
         [ResponseType(typeof(void))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PutMap(int id, Map map)
         {
             if (!ModelState.IsValid)
@@ -138,13 +138,14 @@ namespace REST_API.Controllers
 
         // POST: api/Maps
         [ResponseType(typeof(Map))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostMap(Map map)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
+            map.CreateDate = DateTime.Now;
 
             db.Maps.Add(map);
             db.SaveChanges();
@@ -154,7 +155,7 @@ namespace REST_API.Controllers
 
         // DELETE: api/Maps/5
         [ResponseType(typeof(Map))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeleteMap(int id)
         {
             Map map = db.Maps.Find(id);

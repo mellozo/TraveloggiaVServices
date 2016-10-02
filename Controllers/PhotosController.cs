@@ -21,7 +21,7 @@ namespace REST_API.Controllers
 
         // GET: api/Photos/5
         [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://www.traveloggia.pro, http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IQueryable<Photo> GetPhoto(int id)
         {
             IQueryable<Photo> photos = db.Photos.Where(pic => pic.SiteID == id).AsQueryable();
@@ -69,7 +69,7 @@ namespace REST_API.Controllers
 
         // POST: api/Photos
         [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostPhoto(Photo photo)
         {
             //if (!ModelState.IsValid)
@@ -85,7 +85,7 @@ namespace REST_API.Controllers
 
         // DELETE: api/Photos/5
         [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeletePhoto(int id)
         {
             Photo photo = db.Photos.Find(id);

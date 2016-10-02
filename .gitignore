@@ -9,3 +9,14 @@ obj/*
 obj.*
 obj/*
 obj/*
+bin/AttributeRouting.Web.Mvc.xml
+bin/AttributeRouting.Web.xml
+bin/AttributeRouting.xml
+bin/REST_API.dll
+bin/REST_API.pdb
+bin/WebActivator.pdb
+obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+obj/Debug/TempPE/Models.Model1.cs.dll
+obj/Debug/TempPE/Models.Model1.Designer.cs.dll
+bin/REST_API.dll
+bin/REST_API.pdb
