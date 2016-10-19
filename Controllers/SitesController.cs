@@ -104,7 +104,8 @@ namespace REST_API.Controllers
                 {
                     return NotFound();
                 }
-                db.Sites.Remove(site);       
+                db.Sites.Remove(site);
+                db.SaveChanges();
                 return Ok(site);
         }
 

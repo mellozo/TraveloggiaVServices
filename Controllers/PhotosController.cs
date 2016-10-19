@@ -36,10 +36,10 @@ namespace REST_API.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutPhoto(int id, Photo photo)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
             if (id != photo.PhotoID)
             {
@@ -76,6 +76,12 @@ namespace REST_API.Controllers
             //{
             //    return BadRequest(ModelState);
             //}
+
+            DateTime validDate = DateTime.Now;
+            // string sqlFormattedDate = photoDate.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            if (photo.DateTaken.HasValue)
+              validDate = photo.DateTaken.Value.ToUniversalTime();
+            photo.DateTaken = validDate.ToLocalTime();
             photo.DateAdded = DateTime.Now;
             db.Photos.Add(photo);
             db.SaveChanges();
