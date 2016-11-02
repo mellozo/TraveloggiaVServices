@@ -26,7 +26,7 @@ namespace REST_API.Controllers
             Map map = null;
             try
             {
-               map = db.Maps.Where(m => m.MemberID == id).OrderByDescending(m => m.CreateDate).Include("Sites").FirstOrDefault();
+               map = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).OrderByDescending(m => m.CreateDate).Include("Sites").FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -66,7 +66,7 @@ namespace REST_API.Controllers
         [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: " *", methods: "*")]
         public List<MapListItem> GetMapList(int id)
         {
-            var maps = db.Maps.Where(m => m.MemberID == id).Select(m=> new MapListItem { MapID = m.MapID, MapName = m.MapName, MemberID = m.MemberID, CreateDate = m.CreateDate }).OrderByDescending(m => m.CreateDate);
+            var maps = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).Select(m=> new MapListItem { MapID = m.MapID, MapName = m.MapName, MemberID = m.MemberID, CreateDate = m.CreateDate }).OrderByDescending(m => m.CreateDate);
             return maps.ToList();
         }
 
@@ -158,16 +158,18 @@ namespace REST_API.Controllers
         [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeleteMap(int id)
         {
-            Map map = db.Maps.Find(id);
-            if (map == null)
-            {
-                return NotFound();
-            }
 
-            db.Maps.Remove(map);
-            db.SaveChanges();
+            var map = db.Maps.Where(m => m.MapID == id).First();
+            map.IsDeleted = true;
+         //   db.Entry(map).State = EntityState.Modified;
+
+       
+                db.SaveChanges();
+         
+   
 
             return Ok(map);
+
         }
 
         protected override void Dispose(bool disposing)

@@ -58,6 +58,7 @@
           <Property Name="FromPhone" Type="bit" />
           <Property Name="LastRevision" Type="datetime" />
           <Property Name="HasLayers" Type="bit" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -223,23 +224,6 @@
           <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="MemberID" Type="Int32" />
         </EntityType>
-        <EntityType Name="Map">
-          <Key>
-            <PropertyRef Name="MapID" />
-          </Key>
-          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MapName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="MinX" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MaxX" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MinY" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MaxY" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="FromPhone" Type="Boolean" />
-          <Property Name="LastRevision" Type="DateTime" Precision="3" />
-          <Property Name="HasLayers" Type="Boolean" />
-          <NavigationProperty Name="Sites" Relationship="Self.FK_Sites_Maps" FromRole="Maps" ToRole="Sites" />
-        </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -342,18 +326,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sites_Maps">
-          <End Role="Maps" Type="Self.Map" Multiplicity="0..1" />
-          <End Role="Sites" Type="Self.Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Maps">
-              <PropertyRef Name="MapID" />
-            </Principal>
-            <Dependent Role="Sites">
-              <PropertyRef Name="MapID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Photos_Sites">
           <End Role="Sites" Type="Self.Site" Multiplicity="0..1" />
           <End Role="Photos" Type="Self.Photo" Multiplicity="*" />
@@ -368,7 +340,6 @@
         </Association>
         <EntityContainer Name="traveloggiaDBEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Journals" EntityType="Self.Journal" />
-          <EntitySet Name="Maps" EntityType="Self.Map" />
           <EntitySet Name="Members" EntityType="Self.Member" />
           <EntitySet Name="Photos" EntityType="Self.Photo" />
           <EntitySet Name="Sites" EntityType="Self.Site" />
@@ -378,15 +349,16 @@
             <End Role="Sites" EntitySet="Sites" />
             <End Role="Journal" EntitySet="Journals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sites_Maps" Association="Self.FK_Sites_Maps">
-            <End Role="Maps" EntitySet="Maps" />
-            <End Role="Sites" EntitySet="Sites" />
-          </AssociationSet>
           <AssociationSet Name="FK_Photos_Sites" Association="Self.FK_Photos_Sites">
             <End Role="Sites" EntitySet="Sites" />
             <End Role="Photos" EntitySet="Photos" />
           </AssociationSet>
           <EntitySet Name="Devices" EntityType="traveloggiaDBModel.Device" />
+          <EntitySet Name="Maps" EntityType="traveloggiaDBModel.Map" />
+          <AssociationSet Name="FK_Sites_Maps" Association="traveloggiaDBModel.FK_Sites_Maps">
+            <End Role="Map" EntitySet="Maps" />
+            <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Device">
           <Key>
@@ -412,6 +384,36 @@
           <Property Name="DateRecorded" Type="DateTime" Precision="3" />
           <Property Name="MemberID" Type="Int32" />
         </EntityType>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MapName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MinX" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MaxX" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MinY" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MaxY" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="FromPhone" Type="Boolean" />
+          <Property Name="LastRevision" Type="DateTime" Precision="3" />
+          <Property Name="HasLayers" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Sites" Relationship="traveloggiaDBModel.FK_Sites_Maps" FromRole="Map" ToRole="Site" />
+        </EntityType>
+        <Association Name="FK_Sites_Maps">
+          <End Type="traveloggiaDBModel.Map" Role="Map" Multiplicity="0..1" />
+          <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="MapID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="MapID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -430,23 +432,6 @@
                 <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Maps">
-            <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
-              <MappingFragment StoreEntitySet="Maps">
-                <ScalarProperty Name="MapID" ColumnName="MapID" />
-                <ScalarProperty Name="MapName" ColumnName="MapName" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="MinX" ColumnName="MinX" />
-                <ScalarProperty Name="MaxX" ColumnName="MaxX" />
-                <ScalarProperty Name="MinY" ColumnName="MinY" />
-                <ScalarProperty Name="MaxY" ColumnName="MaxY" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
-                <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -565,6 +550,24 @@
                 <ScalarProperty Name="windowInnerHeight" ColumnName="windowInnerHeight" />
                 <ScalarProperty Name="referrer" ColumnName="referrer" />
                 <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maps">
+            <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
+              <MappingFragment StoreEntitySet="Maps">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
+                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
+                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MaxY" ColumnName="MaxY" />
+                <ScalarProperty Name="MinY" ColumnName="MinY" />
+                <ScalarProperty Name="MaxX" ColumnName="MaxX" />
+                <ScalarProperty Name="MinX" ColumnName="MinX" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MapName" ColumnName="MapName" />
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

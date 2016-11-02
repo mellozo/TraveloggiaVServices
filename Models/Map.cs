@@ -31,6 +31,7 @@ namespace REST_API.Models
         public Nullable<bool> FromPhone { get; set; }
         public Nullable<System.DateTime> LastRevision { get; set; }
         public Nullable<bool> HasLayers { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Site> Sites { get; set; }
