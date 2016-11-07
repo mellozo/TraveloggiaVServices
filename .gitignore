@@ -28,3 +28,14 @@ obj/Debug/edmxResourcesToEmbed/Models/Model1.msl
 obj/Debug/edmxResourcesToEmbed/Models/Model1.ssdl
 bin/REST_API.dll
 bin/REST_API.pdb
+obj/Debug/edmxResourcesToEmbed/Models/Model1.csdl
+obj/Debug/edmxResourcesToEmbed/Models/Model1.msl
+obj/Debug/edmxResourcesToEmbed/Models/Model1.ssdl
+bin/REST_API.dll
+bin/REST_API.pdb
+.vs/config/applicationhost.config
+bin/Microsoft.Web.Infrastructure.xml
+obj/Debug/edmxResourcesToEmbed/Models/Model1.csdl
+obj/Debug/edmxResourcesToEmbed/Models/Model1.msl
+obj/Debug/edmxResourcesToEmbed/Models/Model1.ssdl
+REST_API.csproj.user

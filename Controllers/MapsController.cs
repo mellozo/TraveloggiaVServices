@@ -115,6 +115,11 @@ namespace REST_API.Controllers
                 return BadRequest();
             }
 
+            if(id <= 6088)
+            {
+                return BadRequest();
+            }
+
             db.Entry(map).State = EntityState.Modified;
 
             try
