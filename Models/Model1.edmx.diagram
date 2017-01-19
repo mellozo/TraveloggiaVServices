@@ -5,17 +5,17 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="90838d85dae44a0d9dd01f3269479ca1" Name="Diagram1">
-        <EntityTypeShape EntityType="traveloggiaDBModel.Journal" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Member" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="traveloggiaDBModel.Photo" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="traveloggiaDBModel.Site" Width="1.5" PointX="3.25" PointY="1.625" IsExpanded="true" />
         <EntityTypeShape EntityType="traveloggiaDBModel.TraveloggiaEdition" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Unhandled" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
-        <AssociationConnector Association="traveloggiaDBModel.FK_Journal_Sites" ManuallyRouted="false" />
-        <AssociationConnector Association="traveloggiaDBModel.FK_Photos_Sites" ManuallyRouted="false" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Device" Width="1.5" PointX="0.75" PointY="9.75" />
-        <EntityTypeShape EntityType="traveloggiaDBModel.Map" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="traveloggiaDBModel.Journal" Width="1.5" PointX="5.625" PointY="0.5" />
+        <EntityTypeShape EntityType="traveloggiaDBModel.Map" Width="1.5" PointX="1.125" PointY="3.25" />
+        <EntityTypeShape EntityType="traveloggiaDBModel.Photo" Width="1.5" PointX="5.625" PointY="4.375" />
+        <EntityTypeShape EntityType="traveloggiaDBModel.Site" Width="1.5" PointX="3.375" PointY="2.375" />
+        <AssociationConnector Association="traveloggiaDBModel.FK_Journal_Sites" />
         <AssociationConnector Association="traveloggiaDBModel.FK_Sites_Maps" />
+        <AssociationConnector Association="traveloggiaDBModel.FK_Photos_Sites" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

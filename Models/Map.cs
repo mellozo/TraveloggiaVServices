@@ -32,8 +32,9 @@ namespace REST_API.Models
         public Nullable<System.DateTime> LastRevision { get; set; }
         public Nullable<bool> HasLayers { get; set; }
         public Nullable<bool> IsDeleted { get; set; }
+        public Nullable<bool> CrowdSourced { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Site> Sites { get; set; }
+        public  ICollection<Site> Sites { get; set; }
     }
 }

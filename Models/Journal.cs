@@ -23,5 +23,6 @@ namespace REST_API.Models
         public Nullable<bool> FromPhone { get; set; }
         public string Title { get; set; }
         public Nullable<int> MemberID { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     }
 }

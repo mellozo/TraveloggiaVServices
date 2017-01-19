@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using REST_API.Models;
@@ -26,7 +25,10 @@ namespace REST_API.Controllers
             Map map = null;
             try
             {
-               map = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).OrderByDescending(m => m.CreateDate).Include("Sites").FirstOrDefault();
+               map = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).OrderByDescending(m => m.CreateDate).FirstOrDefault();
+                var sites = db.Sites.Where(s => s.MapID == map.MapID).Where(s => s.IsDeleted != true).ToList();
+                HashSet<REST_API.Models.Site> validSites = new HashSet<Site>(sites);
+                map.Sites = validSites;
             }
             catch (Exception ex)
             {
@@ -78,7 +80,10 @@ namespace REST_API.Controllers
         [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: " *", methods: "*")]
         public IHttpActionResult SelectMap(int id)
         {
-            var map = db.Maps.Where(m => m.MapID == id).Include("Sites").FirstOrDefault(); 
+            var map = db.Maps.Where(m => m.MapID == id).FirstOrDefault();
+            var sites = db.Sites.Where(s => s.MapID == id).Where(s => s.IsDeleted != true).ToList();
+            HashSet<REST_API.Models.Site> validSites = new HashSet<Site>(sites);
+            map.Sites = validSites;
             return Ok(map);
         }
 

@@ -40,10 +40,11 @@ namespace REST_API.Models
         public Nullable<int> RouteIndex { get; set; }
         public Nullable<System.DateTime> Arrival { get; set; }
         public Nullable<System.DateTime> Departure { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Journal> Journals { get; set; }
+        public  ICollection<Journal> Journals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Photo> Photos { get; set; }
+        public  ICollection<Photo> Photos { get; set; }
     }
 }

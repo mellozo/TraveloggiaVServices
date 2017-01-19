@@ -25,13 +25,13 @@ namespace REST_API.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Journal> Journals { get; set; }
         public virtual DbSet<Member> Members { get; set; }
-        public virtual DbSet<Photo> Photos { get; set; }
-        public virtual DbSet<Site> Sites { get; set; }
         public virtual DbSet<TraveloggiaEdition> TraveloggiaEditions { get; set; }
         public virtual DbSet<Unhandled> Unhandleds { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
+        public virtual DbSet<Journal> Journals { get; set; }
         public virtual DbSet<Map> Maps { get; set; }
+        public virtual DbSet<Photo> Photos { get; set; }
+        public virtual DbSet<Site> Sites { get; set; }
     }
 }

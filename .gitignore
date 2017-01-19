@@ -39,3 +39,5 @@ obj/Debug/edmxResourcesToEmbed/Models/Model1.csdl
 obj/Debug/edmxResourcesToEmbed/Models/Model1.msl
 obj/Debug/edmxResourcesToEmbed/Models/Model1.ssdl
 REST_API.csproj.user
+bin/REST_API.dll
+bin/REST_API.pdb

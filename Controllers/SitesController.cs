@@ -94,20 +94,67 @@ namespace REST_API.Controllers
 
 
 
+        //// DELETE: api/Sites/5
+        //[ResponseType(typeof(Site))]
+        //[EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
+        //public IHttpActionResult DeleteSite(int id)
+        //{
+        //   Site  site = db.Sites.Where(s=> s.SiteID == id ).Include("Journals").Include("Photos").FirstOrDefault();
+        //        if (site == null)
+        //        {
+        //            return NotFound();
+        //        }
+        //        db.Sites.Remove(site);
+        //        db.SaveChanges();
+        //        return Ok(site);
+        //}
+
+
+
+
         // DELETE: api/Sites/5
         [ResponseType(typeof(Site))]
         [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeleteSite(int id)
         {
-           Site  site = db.Sites.Where(s=> s.SiteID == id ).Include("Journals").Include("Photos").FirstOrDefault();
-                if (site == null)
-                {
-                    return NotFound();
-                }
-                db.Sites.Remove(site);
+            Site site = db.Sites.Where(s => s.SiteID == id).Include("Journals").Include("Photos").FirstOrDefault();
+            if (site == null)
+            {
+                return NotFound();
+            }
+
+            foreach(Photo p in site.Photos)
+            {
+                p.IsDeleted = true;
+
+            }
+
+            foreach (Journal j in site.Journals)
+            {
+                j.IsDeleted = true;
+            }
+
+            site.IsDeleted = true;
+
+            try
+            {
                 db.SaveChanges();
-                return Ok(site);
+            }
+            catch(Exception ex)
+            {
+
+                return BadRequest(ex.Message);
+            }
+            
+            return Ok(site);
         }
+
+
+
+
+
+
+
 
         protected override void Dispose(bool disposing)
         {

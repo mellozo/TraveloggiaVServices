@@ -42,6 +42,7 @@
           <Property Name="FromPhone" Type="bit" />
           <Property Name="Title" Type="varchar" MaxLength="1000" />
           <Property Name="MemberID" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Maps">
           <Key>
@@ -59,6 +60,7 @@
           <Property Name="LastRevision" Type="datetime" />
           <Property Name="HasLayers" Type="bit" />
           <Property Name="IsDeleted" Type="bit" />
+          <Property Name="CrowdSourced" Type="bit" />
         </EntityType>
         <EntityType Name="Members">
           <Key>
@@ -99,6 +101,7 @@
           <Property Name="Height" Type="int" />
           <Property Name="Width" Type="int" />
           <Property Name="BitsPerSample" Type="int" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="Sites">
           <Key>
@@ -123,6 +126,7 @@
           <Property Name="RouteIndex" Type="int" />
           <Property Name="Arrival" Type="datetime" />
           <Property Name="Departure" Type="datetime" />
+          <Property Name="IsDeleted" Type="bit" />
         </EntityType>
         <EntityType Name="TraveloggiaEdition">
           <Key>
@@ -210,20 +214,6 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="traveloggiaDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Journal">
-          <Key>
-            <PropertyRef Name="JournalID" />
-          </Key>
-          <Property Name="JournalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SiteID" Type="Int32" />
-          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="DateAdded" Type="DateTime" Precision="3" />
-          <Property Name="JournalDate" Type="DateTime" Precision="0" />
-          <Property Name="FromPhone" Type="Boolean" />
-          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="MemberID" Type="Int32" />
-        </EntityType>
         <EntityType Name="Member">
           <Key>
             <PropertyRef Name="MemberID" />
@@ -238,57 +228,6 @@
           <Property Name="CreatedByMapID" Type="Int32" />
           <Property Name="TraveloggiaEditionID" Type="Int32" />
           <Property Name="TraveloggiaEdition" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="Photo">
-          <Key>
-            <PropertyRef Name="PhotoID" />
-          </Key>
-          <Property Name="PhotoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="SiteID" Type="Int32" />
-          <Property Name="JournalID" Type="Int32" />
-          <Property Name="DateAdded" Type="DateTime" Precision="0" />
-          <Property Name="DateTaken" Type="DateTime" Precision="3" />
-          <Property Name="FromPhone" Type="Boolean" />
-          <Property Name="StorageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="ThumbnailURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
-          <Property Name="orientation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="orientationID" Type="Int32" />
-          <Property Name="GPSLatitude" Type="Decimal" Precision="18" Scale="8" />
-          <Property Name="GPSLongitude" Type="Decimal" Precision="18" Scale="8" />
-          <Property Name="Camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Software" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Height" Type="Int32" />
-          <Property Name="Width" Type="Int32" />
-          <Property Name="BitsPerSample" Type="Int32" />
-        </EntityType>
-        <EntityType Name="Site">
-          <Key>
-            <PropertyRef Name="SiteID" />
-          </Key>
-          <Property Name="SiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MapID" Type="Int32" />
-          <Property Name="MemberID" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="DateAdded" Type="DateTime" Precision="3" />
-          <Property Name="FromPhone" Type="Boolean" />
-          <Property Name="Rating" Type="Int32" />
-          <Property Name="AverageRating" Type="Decimal" Precision="18" Scale="1" />
-          <Property Name="VotesCast" Type="Int32" />
-          <Property Name="RouteIndex" Type="Int32" />
-          <Property Name="Arrival" Type="DateTime" Precision="3" />
-          <Property Name="Departure" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Journals" Relationship="Self.FK_Journal_Sites" FromRole="Sites" ToRole="Journal" />
-          <NavigationProperty Name="Photos" Relationship="Self.FK_Photos_Sites" FromRole="Sites" ToRole="Photos" />
         </EntityType>
         <EntityType Name="TraveloggiaEdition">
           <Key>
@@ -314,50 +253,26 @@
           <Property Name="Manufacturer" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="MemberID" Type="Int32" />
         </EntityType>
-        <Association Name="FK_Journal_Sites">
-          <End Role="Sites" Type="Self.Site" Multiplicity="0..1" />
-          <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sites">
-              <PropertyRef Name="SiteID" />
-            </Principal>
-            <Dependent Role="Journal">
-              <PropertyRef Name="SiteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Photos_Sites">
-          <End Role="Sites" Type="Self.Site" Multiplicity="0..1" />
-          <End Role="Photos" Type="Self.Photo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Sites">
-              <PropertyRef Name="SiteID" />
-            </Principal>
-            <Dependent Role="Photos">
-              <PropertyRef Name="SiteID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="traveloggiaDBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Journals" EntityType="Self.Journal" />
           <EntitySet Name="Members" EntityType="Self.Member" />
-          <EntitySet Name="Photos" EntityType="Self.Photo" />
-          <EntitySet Name="Sites" EntityType="Self.Site" />
           <EntitySet Name="TraveloggiaEditions" EntityType="Self.TraveloggiaEdition" />
           <EntitySet Name="Unhandleds" EntityType="Self.Unhandled" />
-          <AssociationSet Name="FK_Journal_Sites" Association="Self.FK_Journal_Sites">
-            <End Role="Sites" EntitySet="Sites" />
+          <EntitySet Name="Devices" EntityType="traveloggiaDBModel.Device" />
+          <EntitySet Name="Journals" EntityType="traveloggiaDBModel.Journal" />
+          <EntitySet Name="Maps" EntityType="traveloggiaDBModel.Map" />
+          <EntitySet Name="Photos" EntityType="traveloggiaDBModel.Photo" />
+          <EntitySet Name="Sites" EntityType="traveloggiaDBModel.Site" />
+          <AssociationSet Name="FK_Journal_Sites" Association="traveloggiaDBModel.FK_Journal_Sites">
+            <End Role="Site" EntitySet="Sites" />
             <End Role="Journal" EntitySet="Journals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Photos_Sites" Association="Self.FK_Photos_Sites">
-            <End Role="Sites" EntitySet="Sites" />
-            <End Role="Photos" EntitySet="Photos" />
-          </AssociationSet>
-          <EntitySet Name="Devices" EntityType="traveloggiaDBModel.Device" />
-          <EntitySet Name="Maps" EntityType="traveloggiaDBModel.Map" />
           <AssociationSet Name="FK_Sites_Maps" Association="traveloggiaDBModel.FK_Sites_Maps">
             <End Role="Map" EntitySet="Maps" />
             <End Role="Site" EntitySet="Sites" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photos_Sites" Association="traveloggiaDBModel.FK_Photos_Sites">
+            <End Role="Site" EntitySet="Sites" />
+            <End Role="Photo" EntitySet="Photos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Device">
@@ -384,6 +299,21 @@
           <Property Name="DateRecorded" Type="DateTime" Precision="3" />
           <Property Name="MemberID" Type="Int32" />
         </EntityType>
+        <EntityType Name="Journal">
+          <Key>
+            <PropertyRef Name="JournalID" />
+          </Key>
+          <Property Name="JournalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="KeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="JournalDate" Type="DateTime" Precision="0" />
+          <Property Name="FromPhone" Type="Boolean" />
+          <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
         <EntityType Name="Map">
           <Key>
             <PropertyRef Name="MapID" />
@@ -400,8 +330,74 @@
           <Property Name="LastRevision" Type="DateTime" Precision="3" />
           <Property Name="HasLayers" Type="Boolean" />
           <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CrowdSourced" Type="Boolean" />
           <NavigationProperty Name="Sites" Relationship="traveloggiaDBModel.FK_Sites_Maps" FromRole="Map" ToRole="Site" />
         </EntityType>
+        <EntityType Name="Photo">
+          <Key>
+            <PropertyRef Name="PhotoID" />
+          </Key>
+          <Property Name="PhotoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="SiteID" Type="Int32" />
+          <Property Name="JournalID" Type="Int32" />
+          <Property Name="DateAdded" Type="DateTime" Precision="0" />
+          <Property Name="DateTaken" Type="DateTime" Precision="3" />
+          <Property Name="FromPhone" Type="Boolean" />
+          <Property Name="StorageURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ThumbnailURL" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="orientation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="orientationID" Type="Int32" />
+          <Property Name="GPSLatitude" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="GPSLongitude" Type="Decimal" Precision="18" Scale="8" />
+          <Property Name="Camera" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Software" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="BitsPerSample" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Site">
+          <Key>
+            <PropertyRef Name="SiteID" />
+          </Key>
+          <Property Name="SiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Longitude" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="Latitude" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MapID" Type="Int32" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="URL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="DateAdded" Type="DateTime" Precision="3" />
+          <Property Name="FromPhone" Type="Boolean" />
+          <Property Name="Rating" Type="Int32" />
+          <Property Name="AverageRating" Type="Decimal" Precision="18" Scale="1" />
+          <Property Name="VotesCast" Type="Int32" />
+          <Property Name="RouteIndex" Type="Int32" />
+          <Property Name="Arrival" Type="DateTime" Precision="3" />
+          <Property Name="Departure" Type="DateTime" Precision="3" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <NavigationProperty Name="Journals" Relationship="traveloggiaDBModel.FK_Journal_Sites" FromRole="Site" ToRole="Journal" />
+          <NavigationProperty Name="Photos" Relationship="traveloggiaDBModel.FK_Photos_Sites" FromRole="Site" ToRole="Photo" />
+        </EntityType>
+        <Association Name="FK_Journal_Sites">
+          <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="traveloggiaDBModel.Journal" Role="Journal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="Journal">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Sites_Maps">
           <End Type="traveloggiaDBModel.Map" Role="Map" Multiplicity="0..1" />
           <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="*" />
@@ -414,27 +410,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Photos_Sites">
+          <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="0..1" />
+          <End Type="traveloggiaDBModel.Photo" Role="Photo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Site">
+              <PropertyRef Name="SiteID" />
+            </Principal>
+            <Dependent Role="Photo">
+              <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="traveloggiaDBModelStoreContainer" CdmEntityContainer="traveloggiaDBEntities">
-          <EntitySetMapping Name="Journals">
-            <EntityTypeMapping TypeName="traveloggiaDBModel.Journal">
-              <MappingFragment StoreEntitySet="Journal">
-                <ScalarProperty Name="JournalID" ColumnName="JournalID" />
-                <ScalarProperty Name="Text" ColumnName="Text" />
-                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
-                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
-                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Members">
             <EntityTypeMapping TypeName="traveloggiaDBModel.Member">
               <MappingFragment StoreEntitySet="Members">
@@ -448,57 +441,6 @@
                 <ScalarProperty Name="CreatedByMapID" ColumnName="CreatedByMapID" />
                 <ScalarProperty Name="TraveloggiaEditionID" ColumnName="TraveloggiaEditionID" />
                 <ScalarProperty Name="TraveloggiaEdition" ColumnName="TraveloggiaEdition" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Photos">
-            <EntityTypeMapping TypeName="traveloggiaDBModel.Photo">
-              <MappingFragment StoreEntitySet="Photos">
-                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
-                <ScalarProperty Name="FileName" ColumnName="FileName" />
-                <ScalarProperty Name="Caption" ColumnName="Caption" />
-                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
-                <ScalarProperty Name="JournalID" ColumnName="JournalID" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
-                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-                <ScalarProperty Name="StorageURL" ColumnName="StorageURL" />
-                <ScalarProperty Name="ThumbnailURL" ColumnName="ThumbnailURL" />
-                <ScalarProperty Name="orientation" ColumnName="orientation" />
-                <ScalarProperty Name="orientationID" ColumnName="orientationID" />
-                <ScalarProperty Name="GPSLatitude" ColumnName="GPSLatitude" />
-                <ScalarProperty Name="GPSLongitude" ColumnName="GPSLongitude" />
-                <ScalarProperty Name="Camera" ColumnName="Camera" />
-                <ScalarProperty Name="Model" ColumnName="Model" />
-                <ScalarProperty Name="Software" ColumnName="Software" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="Width" ColumnName="Width" />
-                <ScalarProperty Name="BitsPerSample" ColumnName="BitsPerSample" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Sites">
-            <EntityTypeMapping TypeName="traveloggiaDBModel.Site">
-              <MappingFragment StoreEntitySet="Sites">
-                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
-                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
-                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
-                <ScalarProperty Name="MapID" ColumnName="MapID" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="URL" ColumnName="URL" />
-                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
-                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-                <ScalarProperty Name="Rating" ColumnName="Rating" />
-                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
-                <ScalarProperty Name="VotesCast" ColumnName="VotesCast" />
-                <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
-                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
-                <ScalarProperty Name="Departure" ColumnName="Departure" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -553,9 +495,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Journals">
+            <EntityTypeMapping TypeName="traveloggiaDBModel.Journal">
+              <MappingFragment StoreEntitySet="Journal">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+                <ScalarProperty Name="JournalDate" ColumnName="JournalDate" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="KeyWords" ColumnName="KeyWords" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Maps">
             <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
               <MappingFragment StoreEntitySet="Maps">
+                <ScalarProperty Name="CrowdSourced" ColumnName="CrowdSourced" />
                 <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
                 <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
@@ -568,6 +527,59 @@
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="MapName" ColumnName="MapName" />
                 <ScalarProperty Name="MapID" ColumnName="MapID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Photos">
+            <EntityTypeMapping TypeName="traveloggiaDBModel.Photo">
+              <MappingFragment StoreEntitySet="Photos">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="BitsPerSample" ColumnName="BitsPerSample" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Software" ColumnName="Software" />
+                <ScalarProperty Name="Model" ColumnName="Model" />
+                <ScalarProperty Name="Camera" ColumnName="Camera" />
+                <ScalarProperty Name="GPSLongitude" ColumnName="GPSLongitude" />
+                <ScalarProperty Name="GPSLatitude" ColumnName="GPSLatitude" />
+                <ScalarProperty Name="orientationID" ColumnName="orientationID" />
+                <ScalarProperty Name="orientation" ColumnName="orientation" />
+                <ScalarProperty Name="ThumbnailURL" ColumnName="ThumbnailURL" />
+                <ScalarProperty Name="StorageURL" ColumnName="StorageURL" />
+                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+                <ScalarProperty Name="DateTaken" ColumnName="DateTaken" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="JournalID" ColumnName="JournalID" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+                <ScalarProperty Name="Caption" ColumnName="Caption" />
+                <ScalarProperty Name="FileName" ColumnName="FileName" />
+                <ScalarProperty Name="PhotoID" ColumnName="PhotoID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sites">
+            <EntityTypeMapping TypeName="traveloggiaDBModel.Site">
+              <MappingFragment StoreEntitySet="Sites">
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="Departure" ColumnName="Departure" />
+                <ScalarProperty Name="Arrival" ColumnName="Arrival" />
+                <ScalarProperty Name="RouteIndex" ColumnName="RouteIndex" />
+                <ScalarProperty Name="VotesCast" ColumnName="VotesCast" />
+                <ScalarProperty Name="AverageRating" ColumnName="AverageRating" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+                <ScalarProperty Name="DateAdded" ColumnName="DateAdded" />
+                <ScalarProperty Name="URL" ColumnName="URL" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="SiteID" ColumnName="SiteID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

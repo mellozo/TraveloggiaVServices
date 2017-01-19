@@ -34,5 +34,6 @@ namespace REST_API.Models
         public Nullable<int> Height { get; set; }
         public Nullable<int> Width { get; set; }
         public Nullable<int> BitsPerSample { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     }
 }

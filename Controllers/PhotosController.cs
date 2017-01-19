@@ -17,19 +17,30 @@ namespace REST_API.Controllers
     {
         private traveloggiaDBEntities db = new traveloggiaDBEntities();
 
-     
+
 
         // GET: api/Photos/5
-        [ResponseType(typeof(Photo))]
+        [ResponseType(typeof(IEnumerable<Photo>))]
         [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
-        public IQueryable<Photo> GetPhoto(int id)
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        public List <Photo> GetPhoto(int id)
         {
-            IQueryable<Photo> photos = db.Photos.Where(pic => pic.SiteID == id).AsQueryable();
+            var photos = db.Photos.Where(pic => pic.SiteID == id);
+            List<Photo> plist = null; 
             //if (photos == null)
             //{
             //    return NotFound();
             //}
-            return photos.AsQueryable();
+            try
+            {
+                plist= photos.ToList();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return plist;
         }
 
         // PUT: api/Photos/5
