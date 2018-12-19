@@ -20,7 +20,7 @@ namespace REST_API.Controllers
 
         // POST: api/Devices
         [ResponseType(typeof(Device))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro ,https://www.traveloggia.pro , http://traveloggia.pro ,https://traveloggia.pro , http://localhost", headers: "*", methods: "*")]
         public IHttpActionResult PostDevice(Device device)
         {
             //if (!ModelState.IsValid)

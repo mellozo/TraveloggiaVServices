@@ -30,8 +30,8 @@ namespace REST_API.Models
         public virtual DbSet<Unhandled> Unhandleds { get; set; }
         public virtual DbSet<Device> Devices { get; set; }
         public virtual DbSet<Journal> Journals { get; set; }
-        public virtual DbSet<Map> Maps { get; set; }
         public virtual DbSet<Photo> Photos { get; set; }
         public virtual DbSet<Site> Sites { get; set; }
+        public virtual DbSet<Map> Maps { get; set; }
     }
 }

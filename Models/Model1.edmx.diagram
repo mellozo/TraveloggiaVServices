@@ -10,12 +10,12 @@
         <EntityTypeShape EntityType="traveloggiaDBModel.Unhandled" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Device" Width="1.5" PointX="0.75" PointY="9.75" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Journal" Width="1.5" PointX="5.625" PointY="0.5" />
-        <EntityTypeShape EntityType="traveloggiaDBModel.Map" Width="1.5" PointX="1.125" PointY="3.25" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Photo" Width="1.5" PointX="5.625" PointY="4.375" />
         <EntityTypeShape EntityType="traveloggiaDBModel.Site" Width="1.5" PointX="3.375" PointY="2.375" />
         <AssociationConnector Association="traveloggiaDBModel.FK_Journal_Sites" />
-        <AssociationConnector Association="traveloggiaDBModel.FK_Sites_Maps" />
         <AssociationConnector Association="traveloggiaDBModel.FK_Photos_Sites" />
+        <EntityTypeShape EntityType="traveloggiaDBModel.Map" Width="1.5" PointX="1.125" PointY="3.25" />
+        <AssociationConnector Association="traveloggiaDBModel.FK_Sites_Maps" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

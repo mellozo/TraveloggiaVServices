@@ -10,6 +10,11 @@ namespace REST_API
     {
         public static void Register(HttpConfiguration config)
         {
+
+            var json = config.Formatters.JsonFormatter;
+            json.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
             // Web API configuration and services
             EnableCrossSiteRequests(config);
 
@@ -25,8 +30,10 @@ namespace REST_API
 
         private static void EnableCrossSiteRequests(HttpConfiguration config)
         {
+
+
             var cors = new EnableCorsAttribute(
-                origins: "http://www.traveloggia.pro ,  http://localhost:53382 , http://html5.traveloggia.net ",
+                origins: "http://www.traveloggia.pro , https://www.traveloggia.pro, https://traveloggia.pro, http://traveloggia.pro, http://localhost/TraveloggiaPro , http://html5.traveloggia.net ",
                 headers: "*",
                 methods: "*");
             config.EnableCors(cors);

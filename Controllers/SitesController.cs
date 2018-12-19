@@ -20,7 +20,8 @@ namespace REST_API.Controllers
 
         // PUT: api/Sites/5
         [ResponseType(typeof(void))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
+        [System.Web.Http.HttpPut]
+        [EnableCors(origins: " https://www.traveloggia.pro, https://traveloggia.pro, http://traveloggia.pro , http://www.traveloggia.pro ",  headers: "*", methods: "*")]
         public IHttpActionResult PutSite(int id, Site site)
         {
             if (!ModelState.IsValid)
@@ -56,7 +57,7 @@ namespace REST_API.Controllers
 
         // POST: api/Sites
         [ResponseType(typeof(Site))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "https://www.traveloggia.pro , https://traveloggia.pro, http://traveloggia.pro, http://www.traveloggia.pro", headers: "*", methods: "*")]
         public IHttpActionResult PostSite(Site site)
         {
             //if (!ModelState.IsValid)
@@ -84,8 +85,8 @@ namespace REST_API.Controllers
         [ResponseType(typeof(Site))]
         [AcceptVerbs("GET")]
         [HttpGet]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,   http://localhost:53382", headers: " *", methods: "*")]
-        public IHttpActionResult SelectMap(int id)
+        [EnableCors(origins: "https://www.traveloggia.pro , https://traveloggia.pro , http://www.traveloggia.pro , http://traveloggia.pro ", headers: " *", methods: "*")]
+        public IHttpActionResult SelectSite(int id)
         {
             var site = db.Sites.Where(s => s.SiteID == id).FirstOrDefault();
             return Ok(site);
@@ -93,6 +94,30 @@ namespace REST_API.Controllers
 
 
 
+        //GET: api/SiteList/5
+        [Route("api/SiteList/{id:int}")]
+        [ResponseType(typeof(IEnumerable<Site>))]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        [EnableCors(origins: "http://localhost:4200, https://www.traveloggia.pro , https://traveloggia.pro", headers: " *", methods: "*")]
+        public IHttpActionResult SiteList(int id)
+        {
+            var site = db.Sites.Where(s => s.MapID == id && s.IsDeleted != true  ).OrderBy(s => s.RouteIndex);
+            return Ok(site);
+        }
+
+
+        //GET: api/SiteList/5
+        [Route("api/ScheduledSites/{id:int}")]
+        [ResponseType(typeof(IEnumerable<Site>))]
+        [AcceptVerbs("GET")]
+        [HttpGet]
+        [EnableCors(origins: "http://localhost:4200, https://www.traveloggia.pro , https://traveloggia.pro", headers: " *", methods: "*")]
+        public IHttpActionResult ScheduledSites(int id)
+        {
+            var site = db.Sites.Where(s => s.MapID == id && s.IsDeleted != true && s.RouteIndex != null ).OrderBy(s => s.RouteIndex);
+            return Ok(site);
+        }
 
         //// DELETE: api/Sites/5
         //[ResponseType(typeof(Site))]
@@ -114,7 +139,7 @@ namespace REST_API.Controllers
 
         // DELETE: api/Sites/5
         [ResponseType(typeof(Site))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "https://www.traveloggia.pro ,  https://traveloggia.pro, http://traveloggia.pro, http://www.traveloggia.pro", headers: "*", methods: "*")]
         public IHttpActionResult DeleteSite(int id)
         {
             Site site = db.Sites.Where(s => s.SiteID == id).Include("Journals").Include("Photos").FirstOrDefault();

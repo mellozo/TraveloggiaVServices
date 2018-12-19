@@ -152,6 +152,8 @@
           <Property Name="Manufacturer" Type="varchar" MaxLength="30" />
           <Property Name="MemberID" Type="int" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'traveloggiaDB.dbo.View_MapSites' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <Association Name="FK_Journal_Sites">
           <End Role="Sites" Type="Self.Sites" Multiplicity="0..1" />
           <End Role="Journal" Type="Self.Journal" Multiplicity="*" />
@@ -259,20 +261,20 @@
           <EntitySet Name="Unhandleds" EntityType="Self.Unhandled" />
           <EntitySet Name="Devices" EntityType="traveloggiaDBModel.Device" />
           <EntitySet Name="Journals" EntityType="traveloggiaDBModel.Journal" />
-          <EntitySet Name="Maps" EntityType="traveloggiaDBModel.Map" />
           <EntitySet Name="Photos" EntityType="traveloggiaDBModel.Photo" />
           <EntitySet Name="Sites" EntityType="traveloggiaDBModel.Site" />
           <AssociationSet Name="FK_Journal_Sites" Association="traveloggiaDBModel.FK_Journal_Sites">
             <End Role="Site" EntitySet="Sites" />
             <End Role="Journal" EntitySet="Journals" />
           </AssociationSet>
-          <AssociationSet Name="FK_Sites_Maps" Association="traveloggiaDBModel.FK_Sites_Maps">
-            <End Role="Map" EntitySet="Maps" />
-            <End Role="Site" EntitySet="Sites" />
-          </AssociationSet>
           <AssociationSet Name="FK_Photos_Sites" Association="traveloggiaDBModel.FK_Photos_Sites">
             <End Role="Site" EntitySet="Sites" />
             <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <EntitySet Name="Maps" EntityType="traveloggiaDBModel.Map" />
+          <AssociationSet Name="FK_Sites_Maps" Association="traveloggiaDBModel.FK_Sites_Maps">
+            <End Role="Map" EntitySet="Maps" />
+            <End Role="Site" EntitySet="Sites" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Device">
@@ -313,25 +315,6 @@
           <Property Name="Title" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
           <Property Name="MemberID" Type="Int32" />
           <Property Name="IsDeleted" Type="Boolean" />
-        </EntityType>
-        <EntityType Name="Map">
-          <Key>
-            <PropertyRef Name="MapID" />
-          </Key>
-          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MapName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="MinX" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MaxX" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MinY" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="MaxY" Type="Decimal" Precision="18" Scale="5" />
-          <Property Name="CreateDate" Type="DateTime" Precision="3" />
-          <Property Name="FromPhone" Type="Boolean" />
-          <Property Name="LastRevision" Type="DateTime" Precision="3" />
-          <Property Name="HasLayers" Type="Boolean" />
-          <Property Name="IsDeleted" Type="Boolean" />
-          <Property Name="CrowdSourced" Type="Boolean" />
-          <NavigationProperty Name="Sites" Relationship="traveloggiaDBModel.FK_Sites_Maps" FromRole="Map" ToRole="Site" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
@@ -398,18 +381,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Sites_Maps">
-          <End Type="traveloggiaDBModel.Map" Role="Map" Multiplicity="0..1" />
-          <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Map">
-              <PropertyRef Name="MapID" />
-            </Principal>
-            <Dependent Role="Site">
-              <PropertyRef Name="MapID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Photos_Sites">
           <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="0..1" />
           <End Type="traveloggiaDBModel.Photo" Role="Photo" Multiplicity="*" />
@@ -419,6 +390,37 @@
             </Principal>
             <Dependent Role="Photo">
               <PropertyRef Name="SiteID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Map">
+          <Key>
+            <PropertyRef Name="MapID" />
+          </Key>
+          <Property Name="MapID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MapName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MinX" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MaxX" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MinY" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="MaxY" Type="Decimal" Precision="18" Scale="5" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="FromPhone" Type="Boolean" />
+          <Property Name="LastRevision" Type="DateTime" Precision="3" />
+          <Property Name="HasLayers" Type="Boolean" />
+          <Property Name="IsDeleted" Type="Boolean" />
+          <Property Name="CrowdSourced" Type="Boolean" />
+          <NavigationProperty Name="Sites" Relationship="traveloggiaDBModel.FK_Sites_Maps" FromRole="Map" ToRole="Site" />
+        </EntityType>
+        <Association Name="FK_Sites_Maps">
+          <End Type="traveloggiaDBModel.Map" Role="Map" Multiplicity="0..1" />
+          <End Type="traveloggiaDBModel.Site" Role="Site" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Map">
+              <PropertyRef Name="MapID" />
+            </Principal>
+            <Dependent Role="Site">
+              <PropertyRef Name="MapID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -511,25 +513,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Maps">
-            <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
-              <MappingFragment StoreEntitySet="Maps">
-                <ScalarProperty Name="CrowdSourced" ColumnName="CrowdSourced" />
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
-                <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
-                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
-                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="MaxY" ColumnName="MaxY" />
-                <ScalarProperty Name="MinY" ColumnName="MinY" />
-                <ScalarProperty Name="MaxX" ColumnName="MaxX" />
-                <ScalarProperty Name="MinX" ColumnName="MinX" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="MapName" ColumnName="MapName" />
-                <ScalarProperty Name="MapID" ColumnName="MapID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Photos">
             <EntityTypeMapping TypeName="traveloggiaDBModel.Photo">
               <MappingFragment StoreEntitySet="Photos">
@@ -580,6 +563,25 @@
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="SiteID" ColumnName="SiteID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Maps">
+            <EntityTypeMapping TypeName="traveloggiaDBModel.Map">
+              <MappingFragment StoreEntitySet="Maps">
+                <ScalarProperty Name="CrowdSourced" ColumnName="CrowdSourced" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+                <ScalarProperty Name="HasLayers" ColumnName="HasLayers" />
+                <ScalarProperty Name="LastRevision" ColumnName="LastRevision" />
+                <ScalarProperty Name="FromPhone" ColumnName="FromPhone" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="MaxY" ColumnName="MaxY" />
+                <ScalarProperty Name="MinY" ColumnName="MinY" />
+                <ScalarProperty Name="MaxX" ColumnName="MaxX" />
+                <ScalarProperty Name="MinX" ColumnName="MinX" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MapName" ColumnName="MapName" />
+                <ScalarProperty Name="MapID" ColumnName="MapID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

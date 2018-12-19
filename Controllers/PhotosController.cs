@@ -21,7 +21,7 @@ namespace REST_API.Controllers
 
         // GET: api/Photos/5
         [ResponseType(typeof(IEnumerable<Photo>))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , https://www.traveloggia.pro, https://traveloggia.pro,  http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost", headers: "*", methods: "*")]
         [AcceptVerbs("GET")]
         [HttpGet]
         public List <Photo> GetPhoto(int id)
@@ -45,6 +45,9 @@ namespace REST_API.Controllers
 
         // PUT: api/Photos/5
         [ResponseType(typeof(void))]
+        [EnableCors(origins: "http://www.traveloggia.pro , https://www.traveloggia.pro, https://traveloggia.pro,  http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost", headers: "*", methods: "*")]
+        [AcceptVerbs("PUT")]
+        [HttpPut]
         public IHttpActionResult PutPhoto(int id, Photo photo)
         {
             //if (!ModelState.IsValid)
@@ -80,7 +83,7 @@ namespace REST_API.Controllers
 
         // POST: api/Photos
         [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro , https://www.traveloggia.pro, https://traveloggia.pro, http://traveloggia.pro ,  http://html5.traveloggia.net, http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult PostPhoto(Photo photo)
         {
             //if (!ModelState.IsValid)
@@ -102,7 +105,7 @@ namespace REST_API.Controllers
 
         // DELETE: api/Photos/5
         [ResponseType(typeof(Photo))]
-        [EnableCors(origins: "http://www.traveloggia.pro , http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
+        [EnableCors(origins: "http://www.traveloggia.pro ,https://www.traveloggia.pro, https://traveloggia.pro, http://traveloggia.pro , http://localhost:53382", headers: "*", methods: "*")]
         public IHttpActionResult DeletePhoto(int id)
         {
             Photo photo = db.Photos.Find(id);
