@@ -45,3 +45,4 @@ bin/REST_API.pdb
 /obj/Debug/edmxResourcesToEmbed/Models/Model1.csdl
 /obj/Debug/edmxResourcesToEmbed/Models/Model1.msl
 /obj/Debug/edmxResourcesToEmbed/Models/Model1.ssdl
+/obj/*
