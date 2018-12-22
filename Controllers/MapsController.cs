@@ -25,17 +25,25 @@ namespace REST_API.Controllers
             Map map = null;
             try
             {
-                 Map lastmap  = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).OrderByDescending(m => m.CreateDate).FirstOrDefault();
-
-                var validSites = db.Sites.Where(s => s.MapID == lastmap.MapID && s.IsDeleted != true).OrderBy(s => s.RouteIndex).ThenBy(s => s.Arrival).ToList();
-
-
-                map = new Map();
-                map.MapID = lastmap.MapID;
-                map.MapName = lastmap.MapName;
-                foreach ( Site s in validSites)
+                 Map selectedmap  = db.Maps.Where(m => m.MemberID == id && m.IsDeleted != true).OrderByDescending(m => m.CreateDate).FirstOrDefault();
+                 var validSites = db.Sites.Where(s => s.MapID == selectedmap.MapID && s.IsDeleted != true).OrderBy(s => s.RouteIndex).ThenBy(s => s.Arrival).ToList();
+                if (selectedmap != null)
                 {
-                    map.Sites.Add(s);
+                    map = new Map();
+                    map.MapID = selectedmap.MapID;
+                    map.MapName = selectedmap.MapName;
+                    map.CreateDate = selectedmap.CreateDate;
+                    map.CrowdSourced = selectedmap.CrowdSourced;
+                    map.FromPhone = selectedmap.FromPhone;
+                    map.HasLayers = selectedmap.HasLayers;
+                    map.IsDeleted = selectedmap.IsDeleted;
+                    map.LastRevision = selectedmap.LastRevision;
+                    map.MemberID = map.MemberID;
+
+                    foreach (Site s in validSites)
+                    {
+                        map.Sites.Add(s);
+                    }
                 }
 
             }
@@ -45,7 +53,7 @@ namespace REST_API.Controllers
             }
           
             // to do if there are no maps create a map and return it
-            if (map == null)
+            if ( map == null)
             {
                 Map defaultMap = new Map();
                 defaultMap.MapName = DateTime.Now.ToShortDateString().Replace(" ", "_");
@@ -94,14 +102,22 @@ namespace REST_API.Controllers
             {
                 Map  selectedmap = db.Maps.Where(m => m.MapID == id).FirstOrDefault();
                 var validSites = db.Sites.Where(s => s.MapID == selectedmap.MapID && s.IsDeleted != true).OrderBy(s => s.RouteIndex).ThenBy(s => s.Arrival).ToList();
-              //  Map map = new Map();
-               // map.MapID = selectedmap.MapID;
-               // map.MapName = selectedmap.MapName;
+                Map map = new Map();
+                map.MapID = selectedmap.MapID;
+                map.MapName = selectedmap.MapName;
+                map.CreateDate = selectedmap.CreateDate;
+                map.CrowdSourced = selectedmap.CrowdSourced;
+                map.FromPhone = selectedmap.FromPhone;
+                map.HasLayers = selectedmap.HasLayers;
+                map.IsDeleted = selectedmap.IsDeleted;
+                map.LastRevision = selectedmap.LastRevision;
+                map.MemberID = map.MemberID;
+                
                 foreach(Site s in validSites)
                 {
-                    selectedmap.Sites.Add(s);
+                    map.Sites.Add(s);
                 }
-                return Ok(selectedmap);
+                return Ok(map);
             }
             catch(Exception ex)
             {
