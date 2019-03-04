@@ -38,7 +38,7 @@ namespace REST_API.Controllers
                     map.HasLayers = selectedmap.HasLayers;
                     map.IsDeleted = selectedmap.IsDeleted;
                     map.LastRevision = selectedmap.LastRevision;
-                    map.MemberID = map.MemberID;
+                    map.MemberID = selectedmap.MemberID;
 
                     foreach (Site s in validSites)
                     {
@@ -111,7 +111,7 @@ namespace REST_API.Controllers
                 map.HasLayers = selectedmap.HasLayers;
                 map.IsDeleted = selectedmap.IsDeleted;
                 map.LastRevision = selectedmap.LastRevision;
-                map.MemberID = map.MemberID;
+                map.MemberID = selectedmap.MemberID;
                 
                 foreach(Site s in validSites)
                 {
